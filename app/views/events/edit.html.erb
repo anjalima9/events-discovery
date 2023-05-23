@@ -1,0 +1,58 @@
+<h1>Modifier l'evenement </h1>
+
+<% if @event.invalid? %>
+<div class="alert alert-danger">
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+</div>
+<% end %>
+
+<%= form_with(model: @event) do |form| %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :heure %>
+    <%= form.text_field :heure, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :lieu %>
+    <%= form.text_field :lieu, class: "form-control" %>
+  </div>
+
+  <div class="form-group  mt-2">
+    <%= form.file_field :background_image, class: "form-control"  %>
+  </div>
+
+  <% if @event.background_image.attached? %>
+    <div class="form-group mt-2">
+      <%= image_tag @event.background_image.variant(resize_to_limit: [200, 200]), class: "img-thumbnail" %>
+    </div>
+  <% end %>
+
+  <div class="d-flex">
+    <div class="form-group mt-2">
+      <%= form.submit "Enregistrer", class: "btn btn-primary" %>
+    </div>
+
+    <div class="form-group mt-2 ms-2">
+      <a href="<%= events_path %>" class="btn btn-secondary"> annuler</a>
+    </div>
+  </div>
+<% end %>
+
+
