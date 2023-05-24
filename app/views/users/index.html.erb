@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+    <% if @user.picture.attached? %>
+      <div class="col-lg-3">
+        <%= image_tag @user.picture.variant(resize_to_limit: [200, 200])%>
+      </div>
+    <%end%>
+      <div class="col-lg-9">
+        <h1><%= current_user.username %></h1>
+        <p><%= current_user.firstname %> <%= current_user.lastname %></p>
+        <p>Bio</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">Tweets</li>
+          <li class="list-inline-item">Following</li>
+          <li class="list-inline-item">Followers</li>
+        </ul>
+    <a href=<%= edit_profil_path %> class="btn btn-primary">Edit information</a>
+      </div>
+    </div>
+
+  </div>
