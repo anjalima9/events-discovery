@@ -1,0 +1,15 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  <% @events.each do |event| %>
+  <div class="col">
+    <div class="card shadow-sm mt-2">
+      <div class="card-body">
+        <h5 class="card-title"><%= event.title %></h5>
+          <p class="card-text"><i class="bi bi-calendar-event"></i> <%= event.date.strftime("%d/%m/%Y") %></p>
+          <p class="card-text"><i class="bi bi-clock"></i> <%= event.heure %></p>
+          <p class="card-text"><i class="bi bi-globe2"></i> <%= event.lieu %></p>
+        <a href="<%= event_path(event.id) %>" class="btn btn-primary">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
