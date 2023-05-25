@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one_attached :picture
   has_secure_password
+  has_many :event
 
   validates :username,
     format: { with: /\A[a-zA-Z0-9_]{2,20}\z/,

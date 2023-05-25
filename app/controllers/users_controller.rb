@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :only_signed_out, only: [:new, :create]
 
   def index
-    @user= current_user
+    @user= User.includes(:event).find_by_id(session[:auth]['id'])
   end
 
   def new

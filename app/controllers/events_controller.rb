@@ -1,10 +1,7 @@
 class EventsController < ApplicationController
 
+  skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy]
   before_action :set_event, only: [:update, :edit, :show, :destroy]
-
-  def index
-    @events = Event.all
-  end
 
   def new
     @event = Event.new
@@ -19,7 +16,7 @@ class EventsController < ApplicationController
   def update
       if @event.update(event_params)
         image_check_n_save "update"
-        redirect_to events_path
+        redirect_to profil_path
       else
         render :edit, status: :unprocessable_entity
       end
@@ -31,7 +28,7 @@ class EventsController < ApplicationController
     if @event.save
        # Vérifier si une image a été téléchargée
       image_check_n_save
-      redirect_to events_path
+      redirect_to profil_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,7 +45,8 @@ class EventsController < ApplicationController
   private
 
    def event_params
-    params.require(:event).permit(:title, :description, :date, :heure, :lieu)
+    return params.require(:event).permit(:title, :description, :date, :heure, :lieu).merge({user_id: session[:auth]['id']}) if session[:auth] || session[:auth]['id']
+    return nil
    end
 
    def set_event
@@ -59,11 +57,8 @@ class EventsController < ApplicationController
     if params[:event][:background_image].present?
       if action === "update"
         @event.background_image.purge if @event.background_image.attached?
-        @event.background_image.attach(params[:event][:background_image])
-      else
-        @event.background_image.attach(params[:event][:background_image])
       end
+      @event.background_image.attach(params[:event][:background_image])
     end
    end
-
 end
