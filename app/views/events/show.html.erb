@@ -13,7 +13,7 @@
       <p class="card-text"><i class="bi bi-clock"></i> <%= @event.heure %></p>
       <p class="card-text"><i class="bi bi-globe2"></i> <%= @event.lieu %></p>
         <a href="<%= edit_event_path(@event) %>" class="btn btn-primary"><i class="bi bi-pen"></i></a>
-        <a href="<%= events_path %>" class="btn btn-secondary"><i class="bi bi-collection"></i></i></a>
+        <a href="<%= profil_path %>" class="btn btn-secondary"><i class="bi bi-collection"></i></i></a>
         <%= link_to event_path(@event),class: "btn btn-danger", data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"
