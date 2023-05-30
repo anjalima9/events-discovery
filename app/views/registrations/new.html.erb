@@ -1,0 +1,5 @@
+<%= form_with(model: @registration, url: registrations_path) do |form| %>
+  <%= form.hidden_field :id_user, value: current_user.id %>
+  <%= form.hidden_field :id_event , value: @event_id %>
+  <%= form.submit "Confirm Registration" %>
+<% end %>

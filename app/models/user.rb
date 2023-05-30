@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one_attached :picture
   has_secure_password
+  has_many :registrations, foreign_key: "id_user"
 
   validates :username,
     format: { with: /\A[a-zA-Z0-9_]{2,20}\z/,
@@ -15,4 +16,5 @@ class User < ApplicationRecord
   def to_session
     {id: id}
   end
+
 end

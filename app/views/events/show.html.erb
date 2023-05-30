@@ -20,5 +20,7 @@
         } do %>
           <i class="bi bi-trash3"></i>
         <% end %>
+      <%= link_to "Register now", new_registration_path(params: { id_event: @event.id }),  class: "btn btn-success" %>
+
     </div>
   </div>

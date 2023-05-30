@@ -1,31 +1,56 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h2>Profil utilisateur</h2>
-      <%= form_with(model: @user,url: profil_path, class: "form") do |form| %>
-        <div class="form-group">
-          <%= form.label :username %>
-          <%= form.text_field :username, class: "form-control" %>
+      <h2>User profile</h2>
+      <div class="card shadow-sm p-4">
+      <%= form_with(model: @user,url: update_profil_path, class: "form") do |form| %>
+        <div class="form-group row mb-4">
+          <div class="col-md-4">
+            <%= form.label :username, class: "col-form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= form.text_field :username, class: "form-control" %>
+          </div>
         </div>
-        <div class="form-group">
-          <%= form.label :email %>
-          <%= form.email_field :email, class: "form-control" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-4">
+            <%= form.label :email, class: "col-form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= form.email_field :email, class: "form-control" %>
+          </div>
         </div>
-        <div class="form-group">
-          <%= form.label :firstname %>
-          <%= form.text_field :firstname, class: "form-control" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-4">
+            <%= form.label :firstname, class: "col-form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= form.text_field :firstname, class: "form-control" %>
+          </div>
         </div>
-        <div class="form-group">
-          <%= form.label :lastname %>
-          <%= form.text_field :lastname, class: "form-control" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-4">
+            <%= form.label :lastname, class: "col-form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= form.text_field :lastname, class: "form-control" %>
+          </div>
         </div>
 
-        <%= form.file_field :picture , class: "form-control" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-4">
+            <%= form.label :picture, class: "col-form-label" %>
+          </div>
+          <div class="col-md-8">
+            <%= form.file_field :picture, class: "form-control" %>
+          </div>
+        </div>
 
         <div class="form-group">
-          <%= form.submit "Enregistrer", class: "btn btn-primary" %>
+          <%= form.submit "Save changes", class: "btn btn-primary" %>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

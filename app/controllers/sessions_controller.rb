@@ -13,7 +13,7 @@ before_action :only_signed_out, only: [:new, :create]
     if @user and @user.authenticate(user_params[:password])
       @user.save
       session[:auth] = @user.to_session
-      redirect_to profil_path
+      redirect_to profil_path(@user)
       else
         redirect_to new_session_path, danger: "Incorrect credentials"
     end
