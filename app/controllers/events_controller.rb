@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
 
-  skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy]
+  skip_before_action :only_signed_out, only: [:new, :edit, :show, :update, :create, :destroy]
   before_action :set_event, only: [:update, :edit, :show, :destroy]
-  skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy]
 
   def new
     @event = Event.new
