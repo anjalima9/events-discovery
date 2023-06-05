@@ -42,7 +42,6 @@ class Populare {
 // Sélectionnez votre en-tête à l'aide d'un sélecteur approprié
 const header = document.getElementById("my-header")
 
-document.addEventListener("turbo:load", () => {
 window.addEventListener('scroll', () => {
   // Déterminez la position de défilement
   const scrollPosition = window.scrollY;
@@ -59,4 +58,3 @@ window.addEventListener('scroll', () => {
 new Populare("Dua lipa concert", dualipa, dualipa, 'london', '3d').addPopulare()
 new Populare("Marrathon festival", marrathon, marrathon, 'vienne', '6d').addPopulare()
 new Populare("Burry tomorrow in metal festival", metal_concert, metal_concert, 'vancouvert', '2d').addPopulare()
-})

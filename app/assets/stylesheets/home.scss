@@ -2,3 +2,15 @@
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent), url('priscilla-du-preez-nF8xhLMmg0c-unsplash.jpg');
     background-size: cover;
 }
+
+.login_image {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent), url('login.jpg');
+    background-size: cover;
+    height: 445px;
+}
+
+.center_content_bg {
+    position: relative;
+    top: 60px;
+    left: 55px;
+}

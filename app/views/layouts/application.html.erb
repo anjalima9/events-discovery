@@ -12,8 +12,10 @@
 
   <body>
   <div class="container">
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-     <img class="yGh0CfFS4AMLWjEE9W7v" src="https://media.istockphoto.com/id/1369522579/photo/calendar-with-a-marked-date-and-hand-with-pointing-finger.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=orJBXZry5lMtTSvQIxaS7_wghpuJdFaaVW2XX9R48fw=" alt="Calendar with a marked date and hand with pointing finger 3D illustration icon events stock pictures, royalty-free photos &amp; images" width="80" height="50">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-4 border-bottom">
+<a href="/">
+<%= image_tag 'event logo.png', size: "80x80" %>
+</a>
 
 <% if user_signed_in? %>
  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -40,19 +42,6 @@
 </li>
           </ul>
         </div>
-
-<% else %>
- <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-      </ul>
-
-      <div class="col-md-3 text-end">
-        <a class="btn btn-primary me-2" href=<%= new_user_path %>>Sign up</a>
-        <a class="btn btn-outline-primary" href=<%= new_session_path %> >Login </a>
-      </div>
 <% end %>
     </header>
 </div>
