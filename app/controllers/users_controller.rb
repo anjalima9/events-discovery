@@ -47,4 +47,18 @@ class UsersController < ApplicationController
 
   end
 
+  private
+
+
+  def generate_event_colors(count)
+    colors = []
+    count.times do
+      opacity = rand(0.4..0.8) # Opacity range between 0.4 and 0.8
+      color = "%06x" % (rand * 0xffffff) # Random hex color code
+      colors << "bg-color-#{color}-#{opacity.round(2)}"
+    end
+    colors
+  end
+
 end
+

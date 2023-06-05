@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_25_105204) do
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -49,6 +49,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_105204) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "registrations", charset: "latin1", force: :cascade do |t|
+    t.integer "id_user"
+    t.integer "id_event"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id_event"], name: "index_registrations_on_id_event"
+    t.index ["id_user"], name: "index_registrations_on_id_user"
   end
 
   create_table "users", charset: "latin1", force: :cascade do |t|

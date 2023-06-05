@@ -1,11 +1,14 @@
 class EventsController < ApplicationController
 
-  skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy]
+  skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy, :search]
   before_action :set_event, only: [:update, :edit, :show, :destroy]
-  skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy]
 
   def new
     @event = Event.new
+  end
+
+  def index
+    @events = Event.where.not(user_id: current_user.id)
   end
 
   def edit
@@ -29,11 +32,16 @@ class EventsController < ApplicationController
     if @event.save
        # Vérifier si une image a été téléchargée
       image_check_n_save
-      redirect_to profil_path
+      redirect_to profil_path(current_user)
     else
       render :new, status: :unprocessable_entity
     end
   end
+
+def search
+@events = Event.where("title LIKE ?", "%" + params[:query] + "%")
+render :index
+end
 
   def destroy
     # Supprimer l'image associée à l'événement s'il en existe une

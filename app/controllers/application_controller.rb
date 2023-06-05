@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def only_signed_out
-    redirect_to profil_path if user_signed_in?
+    redirect_to profil_path(current_user) if user_signed_in?
   end
 
 #juste pour mettre en occurence le nom user signed in

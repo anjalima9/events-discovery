@@ -12,10 +12,13 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: :destroy_session
 
+
+  get '/search', to: 'events#search'
+
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :events, only: [:edit, :new, :show, :create, :update, :destroy]
+  resources :events, only: [:edit, :new, :index, :show, :create, :update, :destroy]
 
   resources :registrations, only: [:new, :create, :show]
 
