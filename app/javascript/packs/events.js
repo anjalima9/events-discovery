@@ -4,7 +4,6 @@ export function applyEventCardColors() {
    const eventId = card.getAttribute('data-id');
    const randomColor = getRandomColor(eventId);
    card.style.backgroundColor = randomColor;
-   console.log("hello");
  });
 }
 

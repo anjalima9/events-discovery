@@ -2,6 +2,8 @@ import dualipa from '../../assets/images/dualipa.jpg'
 import marrathon from '../../assets/images/marrathon.jpg'
 import metal_concert from '../../assets/images/metal_concert.jpg'
 
+// Sélectionnez votre en-tête à l'aide d'un sélecteur approprié
+const header = document.getElementById("my-header")
 const populare = document.getElementById('custom-cards')
 
 class Populare {
@@ -39,8 +41,6 @@ class Populare {
     populare.appendChild(card);
   }
 }
-// Sélectionnez votre en-tête à l'aide d'un sélecteur approprié
-const header = document.getElementById("my-header")
 
 window.addEventListener('scroll', () => {
   // Déterminez la position de défilement
@@ -55,6 +55,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
-new Populare("Dua lipa concert", dualipa, dualipa, 'london', '3d').addPopulare()
-new Populare("Marrathon festival", marrathon, marrathon, 'vienne', '6d').addPopulare()
-new Populare("Burry tomorrow in metal festival", metal_concert, metal_concert, 'vancouvert', '2d').addPopulare()
+if (populare) {
+  new Populare("Dua lipa concert", dualipa, dualipa, 'london', '3d').addPopulare()
+  new Populare("Marrathon festival", marrathon, marrathon, 'vienne', '6d').addPopulare()
+  new Populare("Burry tomorrow in metal festival", metal_concert, metal_concert, 'vancouvert', '2d').addPopulare()
+}
+
