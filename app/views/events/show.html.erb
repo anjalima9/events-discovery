@@ -23,13 +23,39 @@
         <% end %>
         <% end %>
         <% if current_user && current_user.id != @event.user_id %>
-      <% if user_registered_to_event?(current_user, @event) %>
+             <% if user_registered_to_event?(current_user, @event) %>
    <%= link_to "Annuler la registration", registration_path(user_registration_id(current_user, @event)), method: :delete, class: "btn btn-danger" %>
 
 
   <% else %>
-    <%= link_to "Register now", new_registration_path(params: { id_event: @event.id }),  class: "btn btn-success" %>
-  <% end %>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Register now
+        </button>
+          <% end %>
 <% end %>
     </div>
   </div>
+  <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Confirmation de votre inscription
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Voulez vous vraiment vous inscrire pour cette evenement
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+        <%= form_with(model: @registration, url: registrations_path, class: "form") do |form| %>
+      <%= form.hidden_field :id_user, value: current_user.id %>
+      <%= form.hidden_field :id_event , value: @event.id %>
+      <%= form.submit "Oui", class: "btn btn-primary" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

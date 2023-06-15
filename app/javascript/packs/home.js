@@ -46,12 +46,14 @@ window.addEventListener('scroll', () => {
   // Déterminez la position de défilement
   const scrollPosition = window.scrollY;
 
-  // Ajoutez ou supprimez la classe `.white-background` en fonction de la position de défilement
-  if (scrollPosition > 0) {
-    header.classList.add('bg-light');
-  } else {
-    header.classList.remove('bg-light');
-    header.classList.add('bg-light-50');
+  if(header) {
+// Ajoutez ou supprimez la classe `.white-background` en fonction de la position de défilement
+if (scrollPosition > 0) {
+  header.classList.add('bg-light');
+} else {
+  header.classList.remove('bg-light');
+  header.classList.add('bg-light-50');
+}
   }
 });
 
