@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       session[:auth] = @user.to_session
-      redirect_to profil_path, success: "Your account has been successfully created"
+      redirect_to profil_path(@user), success: "Your account has been successfully created"
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,13 +30,35 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     user_params = params.require(:user).permit(:username, :email, :firstname, :lastname, :picture)
+
+    if user_params[:picture].nil?
+      # L'image n'a pas été fournie, donc aucune modification n'est nécessaire
+      user_params.delete(:picture) # Supprimez le paramètre picture du hash user_params
+    end
+
     if @user.update(user_params)
-      @user.picture.attach(params[:user][:picture])
-      redirect_to profil_path, success: "your account has been successfully modified"
+      if user_params[:picture].present?
+      # @user.picture.attach(params[:user][:picture])
+      end
+      redirect_to profil_path(@user), success: "your account has been successfully modified"
       else
         render :edit
     end
 
   end
 
+  private
+
+
+  def generate_event_colors(count)
+    colors = []
+    count.times do
+      opacity = rand(0.4..0.8) # Opacity range between 0.4 and 0.8
+      color = "%06x" % (rand * 0xffffff) # Random hex color code
+      colors << "bg-color-#{color}-#{opacity.round(2)}"
+    end
+    colors
+  end
+
 end
+

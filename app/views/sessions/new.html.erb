@@ -1,9 +1,24 @@
-<div class="form-signin w-50 m-auto">
-  <%= form_with(model: User.new ,url: new_session_path, class: "form") do |form| %>
+
+
+
+
+
+<div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start login_image text-light rounded d-none d-lg-block">
+      <div class="center_content_bg">
+
+        <h1 class="display-4 col-lg-10 fw-bold lh-1 mb-3">Welcome to our event discovery site!</h1>
+        <p class="col-lg-10 fs-4"> Log in to explore a host of exciting upcoming events.
+Discover concerts, conferences, exhibitions and much more. Don't miss the memorable experiences that await you!</p>
+      </div>
+
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+<%= form_with(model: User.new ,url: new_session_path, class: "form p-4 p-md-5 border rounded-3 bg-light") do |form| %>
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <%= form.text_field :username, class: "form-control", id: "floatingInput", placeholder: "name@example.com" %>
+      <%= form.email_field :email, class: "form-control", id: "floatingInput", placeholder: "name@example.com" %>
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
@@ -12,6 +27,9 @@
     </div>
 
     <%= form.submit "Sign in", class: "w-100 btn btn-lg btn-primary mt-5" %>
+    <div class="d-flex justify-content-center my-4 ">
+     <%= link_to "Create new account", new_user_path,  class: "btn btn-success w-100 py-2 " %>
+     </div>
   <% end %>
-
-</div>
+      </div>
+    </div>
