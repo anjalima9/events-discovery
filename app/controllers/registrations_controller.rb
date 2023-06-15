@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
 
-  skip_before_action :only_signed_out, only: [:new, :create]
+  skip_before_action :only_signed_out, only: [:new, :create, :destroy]
   def new
     @event_id = params[:id_event]
     @registration = Registration.new
@@ -28,6 +28,16 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def destroy
+    registration = Registration.find(params[:id])
+    if registration
+      registration.destroy
+      flash[:success] = "Votre inscription a été annulée."
+    else
+      flash[:danger] = "Une erreur s'est produite lors de l'annulation de votre inscription."
+    end
+    redirect_to event_path(registration.id_event)
+  end
 
   private
 

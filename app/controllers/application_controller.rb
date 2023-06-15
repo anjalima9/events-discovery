@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :only_signed_in, :only_signed_out
   add_flash_types :success, :danger
 #helper pour être accessible au niveau de nos vues
-  helper_method :current_user, :user_signed_in?
+  helper_method :current_user, :user_signed_in?, :user_registered_to_event?
 
   private
 
@@ -28,3 +28,8 @@ class ApplicationController < ActionController::Base
     @user_logged = User.find_by_id(session[:auth]['id'])
   end
 end
+
+def user_registered_to_event?(user, event)
+  Registration.exists?(id_user: user.id, id_event: event.id)
+end
+

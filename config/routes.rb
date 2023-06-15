@@ -15,11 +15,13 @@ Rails.application.routes.draw do
 
   get '/search', to: 'events#search'
 
+  get '/registration/:id', to: 'registrations#destroy', as: :registration
+
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :events, only: [:edit, :new, :index, :show, :create, :update, :destroy]
 
-  resources :registrations, only: [:new, :create, :show]
+  resources :registrations, only: [:new, :create]
 
 end

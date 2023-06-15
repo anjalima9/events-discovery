@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
   skip_before_action :only_signed_out, only: [:index, :new, :edit, :show, :update, :create, :destroy, :search]
   before_action :set_event, only: [:update, :edit, :show, :destroy]
+  helper_method :user_registration_id
 
   def new
     @event = Event.new
@@ -70,4 +71,12 @@ end
       @event.background_image.attach(params[:event][:background_image])
     end
    end
+
+
+  def user_registration_id(user, event)
+    registration = Registration.find_by(id_user: user.id, id_event: event.id)
+    registration ? registration.id : nil
+  end
+
+
 end
