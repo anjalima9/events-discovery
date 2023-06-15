@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @registration = Registration.new
   end
 
   def update
