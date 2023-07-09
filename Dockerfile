@@ -6,6 +6,7 @@ RUN mkdir /events-discovery
 WORKDIR /events-discovery
 COPY Gemfile /events-discovery/Gemfile
 COPY Gemfile.lock /events-discovery/Gemfile.lock
+ENV RAILS_ENV=production
 RUN bundle install
 COPY . /events-discovery
 
