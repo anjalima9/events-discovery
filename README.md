@@ -61,5 +61,5 @@ For any questions, suggestions, or bug reports, please contact us at: andrianato
 
 We hope you enjoy using Events Discovery!
 
-Thanks for using our app.
+Thanks for using our app!
 
