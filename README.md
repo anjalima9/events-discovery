@@ -1,6 +1,9 @@
 # Events Discovery
 
-Bienvenue dans Events Discovery ! Cette application vous permet de découvrir et participer à des évènements organisés par d'autres utilisateurs. Vous avez également la possibilité de créer vos propres évènements.
+Welcome to Events Discovery! This application allows you to discover and participate in events organized by other users. You also have the possibility to create your own events.
+
+![Events discovery](https://github.com/anjalima9/events-discovery/assets/72700990/3ea4b238-27c6-4a34-81b7-d40b04dac406)
+
 
 **Framework used**: Ruby on Rails
 
@@ -10,6 +13,7 @@ Bienvenue dans Events Discovery ! Cette application vous permet de découvrir et
 The following tools need to be installed:
 - Ruby [3.2.2]
 - Rails [7.0.4.3]
+- Docker [24.0.1]
 
 ## Setup
 1. Clone this repository to your local machine:
@@ -40,7 +44,7 @@ rails assets:precompile
 ```
 7. Launch the development server:
    ```
-   rails server
+   docker-compose up
    ```
 8. Access the application in your browser at http://localhost:3000.
 
