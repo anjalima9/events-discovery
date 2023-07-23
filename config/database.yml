@@ -13,15 +13,21 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: anja
-  host: db
-  port: 3306
-  socket: /var/run/mysqld/mysqld.sock
+  username: kexvynspa1squ62hussz
+  host: aws.connect.psdb.cloud
+  password: pscale_pw_O8FZnv1HtJ0Kv05XLohsd1b8LNjNqzZHotOjKavB80J
+  ssl_mode: verify_identity
+  sslca: "/etc/ssl/certs/ca-certificates.crt"
+  # username: root
+  # password: anja
+  # host: db
+  # port: 3306
+  # socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: event
+  database: events-discovery
+  # database: event
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
