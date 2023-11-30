@@ -13,11 +13,12 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: kexvynspa1squ62hussz
+  username: am8tq8g137l2u4od27d3
   host: aws.connect.psdb.cloud
-  password: pscale_pw_O8FZnv1HtJ0Kv05XLohsd1b8LNjNqzZHotOjKavB80J
+  password: pscale_pw_nf7USNI54h8T5LOkSVEGIwoP0wM6jbBtSnpHod77QMK
   ssl_mode: verify_identity
   sslca: "/etc/ssl/certs/ca-certificates.crt"
+
   # username: root
   # password: anja
   # host: db
@@ -26,7 +27,7 @@ default: &default
 
 development:
   <<: *default
-  database: events-discovery
+  database: mydb
   # database: event
 
 # Warning: The database defined as "test" will be erased and
