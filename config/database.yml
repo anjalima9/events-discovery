@@ -25,10 +25,14 @@ default: &default
   # port: 3306
   # socket: /var/run/mysqld/mysqld.sock
 
+# development:
+#   <<: *default
+#   database: mydb
+
 development:
   <<: *default
-  database: mydb
-  # database: event
+  database: "mydb"
+  port: <%= ENV['ENABLE_PSDB'] ? 3305 : ENV.fetch("DB_PORT", 3306) %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -57,8 +61,16 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: event_management_production
+#   username: event_management
+#   password: <%= ENV["EVENT_MANAGEMENT_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
-  database: event_management_production
-  username: event_management
-  password: <%= ENV["EVENT_MANAGEMENT_DATABASE_PASSWORD"] %>
+  username: <%= Rails.application.credentials.planetscale&.fetch(:username) %>
+  password: <%= Rails.application.credentials.planetscale&.fetch(:password) %>
+  database: <%= Rails.application.credentials.planetscale&.fetch(:database) %>
+  host: <%= Rails.application.credentials.planetscale&.fetch(:host) %>
+  ssl_mode: verify_identity
