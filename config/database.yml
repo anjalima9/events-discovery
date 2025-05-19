@@ -16,7 +16,7 @@ default: &default
   username: <%= ENV.fetch("DB_USER") %>
   host: <%= ENV.fetch("DB_HOST") %>
   password: <%= ENV.fetch("DB_PWD") %>
-  ssl_mode: verify_identity
+  ssl_mode: disable
   sslca: "/etc/ssl/certs/ca-certificates.crt"
 
   # username: root
@@ -31,7 +31,7 @@ default: &default
 
 development:
   <<: *default
-  database: "mydb"
+  database: <%= ENV['DATABASE_NAME'] %>
   port: <%= ENV['ENABLE_PSDB'] ? 3305 : ENV.fetch("DB_PORT", 3306) %>
 
 # Warning: The database defined as "test" will be erased and

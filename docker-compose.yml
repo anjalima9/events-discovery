@@ -1,20 +1,31 @@
-version: '3'
 services:
   db:
     image: mysql:5.7
     volumes:
-      - ./tmp/db:/var/lib/mysql
+      - db_data:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: event
-      MYSQL_ROOT_PASSWORD: anja
+      MYSQL_DATABASE: myapp_production
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     ports:
-      - "3307:3306"
+      - "3306:3306"
+
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/events-discovery
+      - .:/app
     ports:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USER: myuser
+      DB_PWD: mypassword
+      DATABASE_NAME: eventDiscovery
+      MYSQL2_VERSION: '0.5.5' # si nécessaire
+
+volumes:
+  db_data:
