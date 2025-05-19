@@ -4,12 +4,17 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: myapp_production
+      MYSQL_DATABASE: eventDiscovery  # Changed to match your web service
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
@@ -18,14 +23,15 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       RAILS_ENV: development
       DB_HOST: db
       DB_USER: myuser
       DB_PWD: mypassword
       DATABASE_NAME: eventDiscovery
-      MYSQL2_VERSION: '0.5.5' # si nécessaire
+      MYSQL2_VERSION: '0.5.5'
 
 volumes:
   db_data:

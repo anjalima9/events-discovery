@@ -2,19 +2,35 @@
 set -e
 
 echo "📡 Vérification de la base de données MySQL..."
+echo "Database connection parameters:"
+echo "Host: $DB_HOST"
+echo "User: $DB_USER"
+echo "Password: [hidden]"
+echo "Database: $DATABASE_NAME"
 
-# Boucle jusqu’à ce que la base de données soit prête
-until mysql -h"$DATABASE_HOST" -u"$DATABASE_USERNAME" -p"$DATABASE_PASSWORD" -e "SELECT 1;" > /dev/null 2>&1; do
-  echo "⏳ En attente de MySQL à $DATABASE_HOST..."
+
+# More verbose mysql connection attempt
+until mysql -h"$DB_HOST" -u"$DB_USER" -p"$DB_PWD" -e "SELECT 1;" 2>&1; do
+  echo "⏳ En attente de MySQL à $DB_HOST..."
   sleep 2
 done
 
 echo "✅ MySQL est prêt !"
 
-# Lancer la création et les migrations (prepare = create + migrate + schema:load si nécessaire)
+# Add SSL_MODE=disabled for MySQL connection
+export RAILS_DATABASE_SSL_MODE=disabled
+
+# Lancer la création et les migrations
 echo "🛠️ Préparation de la base de données (create + migrate)..."
 bundle exec rails db:prepare
 
-# Lancer le serveur Rails
+# ✅ Build des assets
+echo "🎨 Compilation des assets (JavaScript, CSS, etc.)..."
+bundle exec rake assets:precompile
+
+# ✅ Créer le dossier manquant
+mkdir -p tmp/pids
+
+# Lancement de Puma
 echo "🚀 Lancement de Puma..."
 exec bundle exec puma -C config/puma.rb

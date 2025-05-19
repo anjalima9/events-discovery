@@ -16,8 +16,8 @@ default: &default
   username: <%= ENV.fetch("DB_USER") %>
   host: <%= ENV.fetch("DB_HOST") %>
   password: <%= ENV.fetch("DB_PWD") %>
-  ssl_mode: disable
-  sslca: "/etc/ssl/certs/ca-certificates.crt"
+  ssl_mode: VERIFY_NONE
+  #sslca: "/etc/ssl/certs/ca-certificates.crt"
 
   # username: root
   # password: anja
@@ -39,7 +39,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: event_management_test
+  database: <%= ENV['DATABASE_NAME'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
