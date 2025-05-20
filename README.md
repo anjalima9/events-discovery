@@ -44,9 +44,17 @@ rails assets:precompile
 ```
 7. Launch the development server:
    ```
-   docker-compose up
+   rails s
    ```
-8. Access the application in your browser at http://localhost:3000.
+
+8. Launch the Production server:
+you need to install docker first and run these command
+```
+docker-compose build
+
+docker-compose up -d
+```
+9. Access the application in your browser at http://localhost:3000.
 
 ## Utilisation
 Once the app is installed and running, you can follow these steps to use it:

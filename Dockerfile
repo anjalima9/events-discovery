@@ -8,6 +8,7 @@ RUN apt-get update -qq && apt-get install -y \
   nodejs \
   libvips42 \
   libvips-dev \ 
+  dos2unix \
   && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
@@ -40,6 +41,8 @@ EXPOSE 3000
 
 # Copier le script d’entrée
 COPY entrypoint.sh /usr/bin/entrypoint.sh
+# Convertir en format Unix
+RUN dos2unix /app/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
 
 # Redéfinir le point d’entrée
